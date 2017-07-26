@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   emailAddress: '',
 
   isValid: Ember.computed.match('emailAddress', /^.+@.+\..+$/),
-  isDisabled: Ember.computed.empty('isValid'),
+  isDisabled: Ember.computed.not('isValid'),
 
   actions: {
 
