@@ -5,9 +5,20 @@ export default Ember.Controller.extend({
   guestEmail: '',
   guestMessage: '',
 
+  isValidEmail: Ember.computed.match('guestEmail', /^.+@.+\..+$/),
+  //isValidName: Ember.computed.gte(guestName.length, 3),
+  isValidMessage: Ember.computed.notEmpty('guestMessage'),
+  isDisabled: Ember.computed('isValidEmail', 'isValidMessage', function() {
+    if (this.get('isValidEmail') && this.get('isValidMessage')){
+       return false;
+     }else{
+       return true;
+    }
+  }),
+
   actions: {
     sendMessage () {
-      this.set('responseMessage', `Thank you! We've just sent your message!`);
+      this.set('responseMessage', `Thank you, ${this.get('guestName')}! We've just sent your message!`);
       this.set('guestName', '');
       this.set('guestEmail', '');
       this.set('guestMessage', '');

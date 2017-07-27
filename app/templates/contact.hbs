@@ -14,5 +14,9 @@
     <p>Tell me what you think.</p>
     {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=guestMessage}}
   </div>
-  <button type="submit" class="btn btn-default" {{action 'saveInvitation'}} disabled={{isDisabled}}>Submit</button>
+  <button type="submit" class="btn btn-default" {{action 'sendMessage'}} disabled={{isDisabled}}>Submit</button>
 </form>
+
+{{#if responseMessage}}
+  <div class="alert alert-success">{{responseMessage}}</div>
+{{/if}}
